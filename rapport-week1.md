@@ -10,7 +10,6 @@
 
 ## What I did not
 - **Country Flags** : pas encore fait, c'est la prochaine étape.
-- **Chapitres bonus sur les dés (double dispatch)** : ignorés pour me concentrer sur les exercices demandés par le sujet.
 
 ## Difficulties & Solutions
 - **Apprentissage et aide IA** : j'apprends beaucoup mieux avec des exemples visuels et concrets plutôt qu'avec de la théorie pure. Comme la syntaxe Smalltalk est très différente de ce que je connais, j'ai utilisé une IA pour me donner des exemples clairs afin de bien visualiser et comprendre le cours avant de coder.
