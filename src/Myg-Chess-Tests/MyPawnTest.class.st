@@ -49,3 +49,15 @@ MyPawnTest >> testWhitePawnCannotMoveForwardIfBlocked [
 	
 	self deny: (pawn targetSquares includes: (board at: 'e3'))
 ]
+
+{ #category : 'tests' }
+MyPawnTest >> testWhitePawnInitialTwoSquareMove [
+	"test if the pawn can move correctly"
+
+	| pawn board |
+	board := MyChessBoard empty.
+	pawn := MyPawn white.
+	board at: 'e2' put: pawn.
+	self assert: (pawn targetSquares includes: (board at: 'e4'))
+	
+]
