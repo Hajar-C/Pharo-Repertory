@@ -2,11 +2,19 @@ Class {
 	#name : 'FSEntry',
 	#superclass : 'Object',
 	#instVars : [
-		'name'
+		'name',
+		'parent'
 	],
 	#category : 'FS',
 	#package : 'FS'
 }
+
+{ #category : 'testing' }
+FSEntry >> matchesName: aString [
+	"Indicates if name starts with the prefix"
+	^ self name beginsWith: aString
+
+]
 
 { #category : 'accessing' }
 FSEntry >> name [
@@ -19,4 +27,23 @@ FSEntry >> name [
 FSEntry >> name: aString [
 	"Setter de la methode name"
 	name := aString
+]
+
+{ #category : 'accessing' }
+FSEntry >> parent [
+	"Returns parent , getter"
+	^ parent
+]
+
+{ #category : 'accessing' }
+FSEntry >> parent: aDirectory [
+	"Sets the parent directory"
+	parent := aDirectory
+]
+
+{ #category : 'accessing' }
+FSEntry >> path [
+	"Computes full slash-separated path from the root"
+	parent ifNil: [ ^ '/' , self name ].
+	^ parent path , '/' , self name
 ]

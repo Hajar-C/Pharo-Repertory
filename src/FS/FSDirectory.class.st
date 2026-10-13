@@ -10,9 +10,9 @@ Class {
 
 { #category : 'adding' }
 FSDirectory >> add: anEntry [
-"ajouter des elements (fichiers ou repertoires)"
-children add: anEntry 
-
+"ajouter des elements (fichiers ou repertoires) et enregistrer self as the parent "
+children add: anEntry. 
+anEntry parent: self
 ]
 
 { #category : 'accessing' }
@@ -40,11 +40,11 @@ FSDirectory >> searchByContents: aString [
 
 { #category : 'as yet unclassified' }
 FSDirectory >> searchByName: aString [
-"la meme chose que fs file mais cherche dans les childrens"
-| myResults childrenResults |
-	myResults := (self name = aString)
-		ifTrue: [ { self } ]
-		ifFalse: [ #( ) ].
-	childrenResults := children flatCollect: [ :each | each searchByName: aString ].
-	^ myResults , childrenResults
+	"Recursively collects self if matching and all matching children"
+	| results |
+	results := OrderedCollection new.
+	(self matchesName: aString) ifTrue: [ results add: self ].
+	children do: [ :each | 
+		results addAll: (each searchByName: aString) ].
+	^ results
 ]

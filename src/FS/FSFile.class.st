@@ -37,6 +37,8 @@ FSFile >> searchByContents: aString [
 
 { #category : 'as yet unclassified' }
 FSFile >> searchByName: aString [
-"renvoie une collection qui contien tout les fichiers qui sont nommer ca "
-	^ { self } select: [ :each | each name = aString ]
+	"Returns self in a collection if name matches prefix empty otherwise"
+	(self matchesName: aString)
+		ifTrue: [ ^ OrderedCollection with: self ].
+	^ OrderedCollection new
 ]
