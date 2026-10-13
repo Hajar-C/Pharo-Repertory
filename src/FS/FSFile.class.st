@@ -20,6 +20,21 @@ FSFile >> contents: aString [
 	contents := aString 
 ]
 
+{ #category : 'initialization' }
+FSFile >> initialize [
+	"Initializes default empty text contents"
+	super initialize.
+	contents := ''
+]
+
+{ #category : 'as yet unclassified' }
+FSFile >> searchByContents: aString [
+	"Returns self in a collection if content matches, empty collection otherwise"
+	(contents includesSubstring: aString)
+		ifTrue: [ ^ OrderedCollection with: self ].
+	^ OrderedCollection new
+]
+
 { #category : 'as yet unclassified' }
 FSFile >> searchByName: aString [
 "renvoie une collection qui contien tout les fichiers qui sont nommer ca "

@@ -38,6 +38,20 @@ FSEntryTest >> setUp [
 ]
 
 { #category : 'tests' }
+FSEntryTest >> testSearchByContents [
+	"Verifies finding files whose contents include a given substring"
+	| results |
+	fileA contents: 'Hello Smalltalk world'.
+	fileB contents: 'Pharo is cool'.
+
+	results := root searchByContents: 'Smalltalk'.
+	self assert: results size equals: 1.
+	self assert: results first equals: fileA.
+
+	self assert: (root searchByContents: 'inexistant') isEmpty
+]
+
+{ #category : 'tests' }
 FSEntryTest >> testSearchByName [
 	"Verifies recursive search returning the given name."
 	| results |

@@ -29,6 +29,16 @@ FSDirectory >> initialize [
 ]
 
 { #category : 'as yet unclassified' }
+FSDirectory >> searchByContents: aString [
+	"Recursively collects matching files from children"
+	| results |
+	results := OrderedCollection new.
+	children do: [ :each | 
+		results addAll: (each searchByContents: aString) ].
+	^ results
+]
+
+{ #category : 'as yet unclassified' }
 FSDirectory >> searchByName: aString [
 "la meme chose que fs file mais cherche dans les childrens"
 | myResults childrenResults |
