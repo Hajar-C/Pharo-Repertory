@@ -8,6 +8,12 @@ Class {
 	#package : 'FS'
 }
 
+{ #category : 'visiting' }
+FSDirectory >> acceptVisitor: aVisitor [
+	"Appelle the visitor for a directory"
+	^ aVisitor visitDirectory: self
+]
+
 { #category : 'adding' }
 FSDirectory >> add: anEntry [
 "ajouter des elements (fichiers ou repertoires) et enregistrer self as the parent "

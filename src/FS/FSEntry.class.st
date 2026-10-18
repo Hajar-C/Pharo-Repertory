@@ -9,6 +9,12 @@ Class {
 	#package : 'FS'
 }
 
+{ #category : 'visiting' }
+FSEntry >> acceptVisitor: aVisitor [
+	"Point d'entrée"
+	self subclassResponsibility
+]
+
 { #category : 'testing' }
 FSEntry >> matchesName: aString [
 	"Indicates if name starts with the prefix"
@@ -46,4 +52,14 @@ FSEntry >> path [
 	"Computes full slash-separated path from the root"
 	parent ifNil: [ ^ '/' , self name ].
 	^ parent path , '/' , self name
+]
+
+{ #category : 'as yet unclassified' }
+FSEntry >> searchByContents: aString [ 
+	^ self subclassResponsibility
+]
+
+{ #category : 'as yet unclassified' }
+FSEntry >> searchByName: aString [ 
+	^ self subclassResponsibility
 ]

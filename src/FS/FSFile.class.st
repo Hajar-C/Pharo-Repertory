@@ -8,6 +8,12 @@ Class {
 	#package : 'FS'
 }
 
+{ #category : 'visiting' }
+FSFile >> acceptVisitor: aVisitor [
+	"The visitor for a file"
+	^ aVisitor visitFile: self
+]
+
 { #category : 'accessing' }
 FSFile >> contents [
 	"getter for content of the file"
