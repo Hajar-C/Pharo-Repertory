@@ -129,3 +129,16 @@ FSEntryTest >> testSearchByNameSingleResult [
 	self assert: results size equals: 1.
 	self assert: results first equals: fileB.
 ]
+
+{ #category : 'tests' }
+FSEntryTest >> testSearchByNameThroughSymlink [
+	"Verifies that a search reaches the target through a symlink"
+	| link results |
+	link := FSSymlink new.
+	link name: 'linkToFileA'.
+	link target: fileA.
+
+	results := link searchByName: 'fileA.txt'.
+	self assert: results size equals: 1.
+	self assert: results first equals: fileA
+]
